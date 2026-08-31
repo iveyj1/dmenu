@@ -1,24 +1,31 @@
 dmenu - dynamic menu
 ====================
-dmenu is an efficient dynamic menu for X.
 
+Personal dmenu build for X. It remains stock dmenu in normal use, with a few local UI patches used by the dwm keymap and launchers.
 
-Requirements
-------------
-In order to build dmenu you need the Xlib header files.
+Build and install
+-----------------
 
+    make clean
+    rm -f config.h
+    make
+    sudo make install
 
-Installation
-------------
-Edit config.mk to match your local setup (dmenu is installed into
-the /usr/local namespace by default).
+`config.h` is generated from `config.def.h`; this repo tracks both, so keep them synchronized.
 
-Afterwards enter the following command to build and install dmenu
-(if necessary as root):
-
-    make clean install
-
-
-Running dmenu
+Local changes
 -------------
-See the man page for details.
+
+- Default font size adjusted for the local desktop.
+- `-c` centers the menu on the selected monitor.
+- Multiple-selection outline colors can be set with `-ob` and `-of`.
+
+Usage
+-----
+
+Examples:
+
+    dmenu_run
+    printf '%s\n' one two three | dmenu -c -l 10 -p Choose:
+
+See `dmenu.1` for all options and key bindings.
