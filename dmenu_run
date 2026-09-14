@@ -1,2 +1,4 @@
 #!/bin/sh
-dmenu_path | dmenu -l 10 "$@" | ${SHELL:-"/bin/sh"} &
+menu=dmenu
+command -v dmenu-font >/dev/null 2>&1 && menu=dmenu-font
+dmenu_path | "$menu" -l 10 "$@" | ${SHELL:-"/bin/sh"} &

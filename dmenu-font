@@ -1,0 +1,12 @@
+#!/bin/sh
+# Optional Xresources policy; dmenu itself remains an independent executable.
+# Explicit caller font wins. Do not consume/reconstruct other arguments.
+for arg do
+    [ "$arg" != -fn ] || exec dmenu "$@"
+done
+font=
+if command -v xrdb >/dev/null 2>&1; then
+    font=$(xrdb -query 2>/dev/null | awk '
+        $1 == "dmenu.font:" { sub(/^[^:]*:[ \t]*/, ""); print; exit }')
+fi
+exec dmenu -fn "${font:-monospace:size=11}" "$@"

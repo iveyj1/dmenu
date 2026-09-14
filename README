@@ -22,6 +22,19 @@ libx11-dev, libxft-dev, libxinerama-dev, libfontconfig-dev and libfreetype-dev;
 Void uses libX11-devel, libXft-devel, libXinerama-devel, fontconfig-devel and
 freetype-devel. This menu also works under other X window managers.
 
+Runtime font configuration
+--------------------------
+
+`make install` also installs the independent `dmenu-font` shell wrapper.
+It reads the exact `dmenu.font` key from `xrdb -query` each time, falling back to
+monospace:size=11. An explicit -fn argument takes precedence. dmenu_run uses the
+wrapper when available; raw dmenu still uses compiled defaults/CLI options.
+
+Set `dmenu.font: DroidSansM Nerd Font Mono:size=11` in an X resource file and
+merge it with xrdb -merge. No rebuild is needed for subsequent changes. The
+optional configure-sl session loads ~/.Xresources followed by the machine-local
+~/.config/X11/machine.resources. No dwm or session framework is required.
+
 Local changes
 -------------
 
