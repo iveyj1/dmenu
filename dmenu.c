@@ -54,6 +54,7 @@ static Clr *scheme[SchemeLast];
 
 #include "config.h"
 
+static int smartcase;
 static int (*fstrncmp)(const char *, const char *, size_t) = strncmp;
 static char *(*fstrstr)(const char *, const char *) = strstr;
 
@@ -237,6 +238,12 @@ match(void)
 	size_t len, textsize;
 	struct item *item, *lprefix, *lsubstr, *prefixend, *substrend;
 
+	if (smartcase) {
+		for (s = text; *s && !isupper((unsigned char)*s); s++)
+			;
+		fstrncmp = *s ? strncmp : strncasecmp;
+		fstrstr = *s ? strstr : cistrstr;
+	}
 	strcpy(buf, text);
 	/* separate input text into tokens to be matched individually */
 	for (s = strtok(buf, " "); s; tokv[tokc - 1] = s, s = strtok(NULL, " "))
@@ -726,7 +733,7 @@ setup(void)
 static void
 usage(void)
 {
-	die("usage: dmenu [-bcfiv] [-l lines] [-p prompt] [-fn font] [-m monitor]\n"
+	die("usage: dmenu [-bcfisv] [-l lines] [-p prompt] [-fn font] [-m monitor]\n"
 	    "             [-nb color] [-nf color] [-sb color] [-sf color]\n"
 	    "             [-ob color] [-of color] [-w windowid]");
 }
@@ -748,6 +755,8 @@ main(int argc, char *argv[])
 			centered = 1;
 		else if (!strcmp(argv[i], "-f"))   /* grabs keyboard before reading stdin */
 			fast = 1;
+		else if (!strcmp(argv[i], "-s")) /* smart-case item matching */
+			smartcase = 1;
 		else if (!strcmp(argv[i], "-i")) { /* case-insensitive item matching */
 			fstrncmp = strncasecmp;
 			fstrstr = cistrstr;

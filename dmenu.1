@@ -54,6 +54,10 @@ is faster, but will lock up X until stdin reaches end\-of\-file.
 .B \-i
 dmenu matches menu items case insensitively.
 .TP
+.B \-s
+dmenu ignores case unless the search contains an uppercase letter (smart case).
+This takes precedence over \-i.
+.TP
 .BI \-l " lines"
 dmenu lists items vertically, with the given number of lines.
 .TP
