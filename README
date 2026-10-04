@@ -6,7 +6,7 @@ Personal dmenu build for X. It remains stock dmenu in normal use, with a few loc
 Change-size history
 -------------------
 
-See `scripts/cloc_by_commit.md` for changes since the upstream fork and per-change
+The gitignored local report `scripts/cloc_by_commit.md` records changes since the upstream fork and per-change
 runtime/support cloc counts. After editing, run
 `python3 scripts/update_cloc_by_commit.py` (requires Python 3.9+, git, cloc).
 It reports the latest totals/deltas and includes pending changes separately.

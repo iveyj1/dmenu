@@ -2,3 +2,4 @@
 *.o
 
 /stest
+/scripts/cloc_by_commit.md
