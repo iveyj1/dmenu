@@ -1,0 +1,21 @@
+{
+  "project": "dmenu",
+  "baseline": "7175c4880bac3d2a2d4a6262b59193f0a38e2fdb",
+  "baseline_description": "Upstream dmenu 5.4 plus upstream fixes; fork baseline.",
+  "upstream_url": "https://git.suckless.org/dmenu",
+  "upstream_head": "61e0072c3e6adfc67bafbc84e376cf26bc3680c0",
+  "notes": ["Baseline verified as the upstream/local merge-base. -ob/-of outline colors were inherited upstream, not added by this fork."],
+  "config_pairs": [["config.h", "config.def.h"]],
+  "support": ["b"],
+  "exclude": ["buildinfo.h"],
+  "changes": {
+    "50644ca": "Default launcher to 10 vertical rows; track config.h with font size 14; add build-artifact ignores.",
+    "5d2dc6c": "Add -c centered placement (900px width cap, Xinerama and fallback); font 14 → 24.",
+    "afcf736": "Font 24 → 16; synchronize config.def.h; add b build/optional-install script.",
+    "6437bf6": "Document local build/options; correct CLI usage for -c and existing -ob/-of options.",
+    "88bd9e7": "Reduce font 16 → 13 in both configuration headers.",
+    "02cad08": "Document Mint/Void build dependencies; no executable changes.",
+    "821c86b": "Add dmenu-font Xresources wrapper and launcher fallback; font 13 → 11; install wrapper, add font tests and make check.",
+    "c4df2fc": "Add -s smart-case search; document option."
+  }
+}

@@ -3,6 +3,15 @@ dmenu - dynamic menu
 
 Personal dmenu build for X. It remains stock dmenu in normal use, with a few local UI patches used by the dwm keymap and launchers.
 
+Change-size history
+-------------------
+
+See `scripts/cloc_by_commit.md` for changes since the upstream fork and per-change
+runtime/support cloc counts. After editing, run
+`python3 scripts/update_cloc_by_commit.py` (requires Python 3.9+, git, cloc).
+It reports the latest totals/deltas and includes pending changes separately.
+Use `--check` to detect stale reports; regenerate again after committing.
+
 Build and install
 -----------------
 
@@ -41,6 +50,19 @@ Local changes
 - Default font size adjusted for the local desktop.
 - `-c` centers the menu on the selected monitor.
 - Multiple-selection outline colors can be set with `-ob` and `-of`.
+
+Upstream fixes backported
+-------------------------
+
+From https://git.suckless.org/dmenu (2026-09-13), retaining local centering
+and smart-case behavior:
+
+- `5453bb6`: guard horizontal drawing when a long prompt and End leave curr NULL.
+- `0785a28`: reject zero Xinerama screens and fall back to screen 0 when the
+  pointer intersects no screen. The fallback runs before centered placement.
+- `61e0072`: require positive input length before inspecting the key buffer.
+
+These are source backports, not a merge of upstream Git ancestry.
 
 Usage
 -----
