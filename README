@@ -49,6 +49,7 @@ Local changes
 
 - Default font size adjusted for the local desktop.
 - `-c` centers the menu on the selected monitor.
+- `-it text` pre-fills the input field.
 - Multiple-selection outline colors can be set with `-ob` and `-of`.
 
 Upstream fixes backported

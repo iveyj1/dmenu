@@ -35,6 +35,7 @@ struct item {
 
 static char text[BUFSIZ] = "";
 static char *embed;
+static char *initialtext;
 static int bh, mw, mh;
 static int inputw = 0, promptw;
 static int lrpad; /* sum of left and right padding */
@@ -739,7 +740,7 @@ setup(void)
 static void
 usage(void)
 {
-	die("usage: dmenu [-bcfisv] [-l lines] [-p prompt] [-fn font] [-m monitor]\n"
+	die("usage: dmenu [-bcfisv] [-it text] [-l lines] [-p prompt] [-fn font] [-m monitor]\n"
 	    "             [-nb color] [-nf color] [-sb color] [-sf color]\n"
 	    "             [-ob color] [-of color] [-w windowid]");
 }
@@ -769,6 +770,8 @@ main(int argc, char *argv[])
 		} else if (i + 1 == argc)
 			usage();
 		/* these options take one argument */
+		else if (!strcmp(argv[i], "-it"))  /* initial text in the input field */
+			initialtext = argv[++i];
 		else if (!strcmp(argv[i], "-l"))   /* number of lines in vertical list */
 			lines = atoi(argv[++i]);
 		else if (!strcmp(argv[i], "-m"))
@@ -814,6 +817,12 @@ main(int argc, char *argv[])
 	if (pledge("stdio rpath", NULL) == -1)
 		die("pledge");
 #endif
+
+	if (initialtext) {
+		strncpy(text, initialtext, sizeof text - 1);
+		text[sizeof text - 1] = '\0';
+		cursor = strlen(text);
+	}
 
 	if (fast && !isatty(0)) {
 		grabkeyboard();
