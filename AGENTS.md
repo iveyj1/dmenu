@@ -1,6 +1,6 @@
 # dmenu maintenance
 
-Keep tracked `config.h` and `config.def.h` synchronized for configuration changes.
+Edit `config.def.h` only. `config.h` is an ignored build output, automatically regenerated when the template changes.
 
 ## Change-size history (required)
 

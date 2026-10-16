@@ -16,11 +16,10 @@ Build and install
 -----------------
 
     make clean
-    rm -f config.h
     make
     sudo make install
 
-`config.h` is generated from `config.def.h`; this repo tracks both, so keep them synchronized.
+Edit `config.def.h` only. `config.h` is ignored and regenerated automatically when the template changes.
 
 Mint / Void
 -----------
